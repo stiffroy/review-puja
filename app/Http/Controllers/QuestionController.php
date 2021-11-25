@@ -27,7 +27,7 @@ class QuestionController extends Controller
 
         $q->save();
 
-     Session::put('successMessage','Question successfully added');
+        Session::put('successMessage','Question successfully added');
 
         return redirect('questions');
     }
@@ -41,7 +41,7 @@ class QuestionController extends Controller
     public function edit(Question $q , $id)
     {
         $q = Question::find($id);
-        return view('edit',['questions'=>$q]);
+        return view('edit',['q'=>$q]);
     }
 
     public function update(Request $request, Question $q, $id)
@@ -64,7 +64,7 @@ class QuestionController extends Controller
 
         $q->save();
 
-     Session::put('successMessage','Question successfully added');
+        Session::put('successMessage','Question successfully updated');
 
         return redirect('questions');
     }
@@ -77,5 +77,70 @@ class QuestionController extends Controller
         $q -> delete();
         Session::put('successMessage','Question successfully deleted');
         return redirect('questions');
+    }
+
+    public function startquiz()
+    {
+        // Session::put('nextq','1');
+        //  Session::put('wrongans','0');
+        //  Session::put('correctans','0');
+        // $wrongans=0;
+        // $correctans=0;
+        $q = Question::all();
+        return view('exampage',['qs'=>$q]);
+    }
+    public function submitans(Request $request)
+    {
+        // $nextq = Session::get('nextq');
+        // $worngans = Session::get('wrongans');
+        // $correctans = Session::get('correctans');
+        $wrongans=0;
+        $correctans=0;
+        
+        $qs = Question::all();
+       // $i=0;
+        //$j=$qs->count();
+
+        // for($i=0;$i<$j; $i++)
+        // {
+            $validation = $request->validate([
+                'ans'=>'required',
+                'dbans'=>'required',
+            ]);
+            // $nextq+=1;
+            
+            if($request->dbans == $request->ans)
+            {
+                $correctans+=1;
+            }
+            else
+            {
+                $wrongans+=1;
+            }
+             
+            $correctans=$correctans;
+            $wrongans=$wrongans;
+            // Session::put('nextq',$nextq);
+            // Session::put('wrongans',$worngans);
+            // Session::put('correctans',$correctans);
+            
+            return view('end',['c'=>$correctans,'w'=>$wrongans]);
+        //}
+        
+
+    //     $i=0;
+    //     $questions = Question::all();
+    //     foreach($questions as $question)
+    //     {
+    //         $i++;
+    //         if($questions->count() < $nextq)
+    //         {
+    //             return view('end');
+    //         }
+    //         if($i==$nextq)
+    //          {
+    //             return view('exampage',['question'=>$questions]);
+    //          }
+    //    }
     }
 }

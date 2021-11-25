@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'dashboard')
+@section('title', 'Update')
 @section('pagesection')
     <!-- Modal-Add -->
     {{-- <div class="modal fade" id="Modal_add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -21,10 +21,7 @@
             <form method="POST" action="/update/{{$q->id}}">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add</h5>
-                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                       <span aria-hidden="true">&times;</span>
-                   </button> --}}
+                    <h5 class="modal-title" id="exampleModalLabel">Update</h5>
                 </div>
 
                 <div class="modal-body">
@@ -32,28 +29,29 @@
                         <label>Question</label>
                     </div>
                     <div class="row">
-                        <input name="question" value={{$q->question}} class="form-control">
+                        <input name="question" class="form-control" value={{$q->question}} >
                     </div>
                     <div class="row">
                         <div class="col-md-6"><label>A</label></div>
                         <div class="col-md-6"><label>B</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6"><input name="opa" value={{$q->a}}class="form-control"></div>
-                        <div class="col-md-6"><input name="opb" value={{$q->b}}class="form-control"></div>
+                        <div class="col-md-6"><input name="opa" class="form-control" value={{$q->a}}></div>
+                        <div class="col-md-6"><input name="opb" class="form-control" value={{$q->b}}></div>
                     </div>
                     <div class="row">
                         <div class="col-md-6"><label>C</label></div>
                         <div class="col-md-6"><label>D</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6"><input name="opc"value={{$q->c}} class="form-control"></div>
-                        <div class="col-md-6"><input name="opd" value={{$q->d}} class="form-control"></div>
+                        <div class="col-md-6"><input name="opc" class="form-control" value={{$q->c}} ></div>
+                        <div class="col-md-6"><input name="opd" class="form-control" value={{$q->d}} ></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
                             <label>Answer</label><br />
                             <select name="ans" class="form-control">
+                                <option Value={{$q->ans}}>Answer: {{$q->ans}}</option>
                                 <option Value={{$q->a}}>A</option>
                                 <option Value={{$q->b}}>B</option>
                                 <option Value={{$q->c}}>C</option>
@@ -63,7 +61,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{-- <a href="questions"><button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button></a> --}}
                     <button type="Submit" class="btn btn-primary" data-dismiss="modal">Add questions</button>
                 </div>
             </form>

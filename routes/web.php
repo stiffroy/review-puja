@@ -32,9 +32,10 @@ Route::any('addquestion', function () {
     return view('addquestion');
 });
 
-//Route::any('add','QuestionController@add');
+Route::post('submitans',[QuestionController::class,'submitans']);
 Route::post('add',[QuestionController::class,'add']);
 //Route::get('update/{id}',[QuestionController::class,'update']);
 Route::get('edit/{id}',[QuestionController::class,'edit']);
 Route::post('update/{id}',[QuestionController::class,'update']);
 Route::get('delete/{id}',[QuestionController::class,'delete']);
+Route::get('startquiz',[QuestionController::class,'startquiz']);

@@ -1,8 +1,16 @@
 @extends('master')
 @section('title', 'Questions')
+
+@section('pagestyle')
+    <style>
+        .text-color{
+            color:rgb(0, 102, 255);
+        }
+    </style>
+
 @section('pagesection')
     <br>
-    <h3 style="text-align: center;">Admin</h3>
+    <h2 style="text-align: center;" class="mt-4 text-color">Teachers Panel</h2>
     @if(Session::get('successMessage'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Success</strong> {{Session::get('successMessage')}}
@@ -15,14 +23,12 @@
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-1">
-                            <h2>Users <b></b></h2>
+                        <div class="col-sm-10">
+                            <h3 class="mb-4 text-color">Laravel Questions<b></b></h3>
                         </div>
-                        
-                        <div class="col-sm-7"><a href="addquestion"><Button data-toggle="modal" data-target="#Modal_add" class="btn btn-primary">Add</Button></a></div>
-                        <div class="col-sm-4">
-                            <div class="search-box">
-                                <input type="text" class="form-control" placeholder="Search&hellip;">
+                        <div class="col-sm-2">
+                            <div class="float-right">
+                                <a href="addquestion"><Button data-toggle="modal" data-target="#Modal_add" class="btn btn-primary">Add Question</Button></a>
                             </div>
                         </div>
                     </div>
@@ -43,7 +49,7 @@
 
                             <td>
                                 <a href="/edit/{{$qs->id}}" class="text-warning" data-toggle="modal"
-                                    data-target="#Modal_edit/{{$qs->id}}">Update</a>
+                                    data-target="#Modal_update/{{$qs->id}}">Update</a>
                                 <a href="/delete/{{$qs->id}}" class="text-danger" data-toggle="tooltip">Delete</a>
                             </td>
                         </tr>
