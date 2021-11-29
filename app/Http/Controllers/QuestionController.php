@@ -97,22 +97,22 @@ class QuestionController extends Controller
         $wrongans=0;
         $correctans=0;
         
-        $qs = Question::all();
        // $i=0;
         //$j=$qs->count();
 
         $answers = $request->get('ans');
-        $dbans = $request->get('dbans');
 
          foreach ($answers as $id => $answer)
          {
+             // Surely this is not a good practice
+             $qs = Question::find($id);
 //            $validation = $request->validate([
 //                'ans'=>'required',
 //                'dbans'=>'required',
 //            ]);
             // $nextq+=1;
             
-            if($answer == $dbans[$id])
+            if($answer == $qs->ans)
             {
                 $correctans+=1;
             }

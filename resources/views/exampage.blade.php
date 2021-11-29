@@ -12,8 +12,7 @@
            <input name="ans[{{$q->id}}]" value="b" type="radio">(B) {{$q->b}}<br/>
            <input name="ans[{{$q->id}}]" value="c" type="radio">(C) {{$q->c}}<br/>
            <input name="ans[{{$q->id}}]" value="d" type="radio">(D) {{$q->d}}<br/>
-           <input name="dbans[{{$q->id}}]" value={{$q->ans}} style="visibility:hidden;" >
-           
+
            @endforeach
            <button type="submit" class="btn btn-primary">Submit</button>
        
