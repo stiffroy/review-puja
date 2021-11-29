@@ -101,15 +101,18 @@ class QuestionController extends Controller
        // $i=0;
         //$j=$qs->count();
 
-        // for($i=0;$i<$j; $i++)
-        // {
-            $validation = $request->validate([
-                'ans'=>'required',
-                'dbans'=>'required',
-            ]);
+        $answers = $request->get('ans');
+        $dbans = $request->get('dbans');
+
+         foreach ($answers as $id => $answer)
+         {
+//            $validation = $request->validate([
+//                'ans'=>'required',
+//                'dbans'=>'required',
+//            ]);
             // $nextq+=1;
             
-            if($request->dbans == $request->ans)
+            if($answer == $dbans[$id])
             {
                 $correctans+=1;
             }
@@ -118,14 +121,16 @@ class QuestionController extends Controller
                 $wrongans+=1;
             }
              
-            $correctans=$correctans;
-            $wrongans=$wrongans;
+            // $correctans=$correctans;
+            // $wrongans=$wrongans;
             // Session::put('nextq',$nextq);
             // Session::put('wrongans',$worngans);
             // Session::put('correctans',$correctans);
             
-            return view('end',['c'=>$correctans,'w'=>$wrongans]);
-        //}
+        }
+
+         // return should never be in a for loop
+         return view('end',['c'=>$correctans,'w'=>$wrongans]);
         
 
     //     $i=0;
